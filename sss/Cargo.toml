@@ -1,8 +1,8 @@
 [package]
 name = "sss"
-description = "Shamir secret sharing"
-version = "0.1.0"
-edition = "2024"
+description = "Shamir secret sharing "
+version.workspace = true
+edition.workspace = true
 
 [dependencies]
 bls12_381 = { workspace = true }

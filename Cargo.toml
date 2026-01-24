@@ -1,5 +1,5 @@
 [workspace]
-members = ["sss", "vss"]
+members = ["dkg", "sss", "vss"]
 
 resolver = "2"
 
@@ -10,6 +10,7 @@ edition = "2024"
 
 [workspace.dependencies]
 sss = { version = "0.1.0", path = "sss" }
+vss = { version = "0.1.0", path = "vss" }
 bls12_381 = "0.8.0"
 ff = "0.13.1"
 group = "0.13.0"
