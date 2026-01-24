@@ -2,12 +2,12 @@ use bls12_381::Scalar;
 
 mod sss;
 
-struct Share {
-    x: Scalar,
-    y: Scalar,
+pub struct Share {
+    pub x: Scalar,
+    pub y: Scalar,
 }
 
-struct Polynomial {
+pub struct Polynomial {
     coeffs: Vec<Scalar>,
 }
 
