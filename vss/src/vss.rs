@@ -7,7 +7,7 @@ use crate::{Commitment, VssOutput};
 
 /// Generate verifiable shares of a secret via the Feldman's verifiable secret sharing protocol.
 /// Returns the shares and the polynomial coefficient commitment.
-fn generate_vss_shares(secret: Scalar, t: usize, n: usize) -> VssOutput {
+pub fn generate_vss_shares(secret: Scalar, t: usize, n: usize) -> VssOutput {
     let mut rng = thread_rng();
 
     let mut coefficients = Vec::with_capacity(t);
@@ -17,12 +17,16 @@ fn generate_vss_shares(secret: Scalar, t: usize, n: usize) -> VssOutput {
     }
     let polynomial = Polynomial::new(coefficients.clone());
 
+    // We compute the commitment to the polynomial given by the multiplication of the group
+    // generator by the coefficients. Projective coordinates are used to simplify operation.
     let g = G1Projective::generator();
     let commitment_points: Vec<G1Projective> = coefficients.iter().map(|c| g * c).collect();
     let commitment = Commitment::new(commitment_points);
 
     let shares: Vec<Share> = (1..=n)
         .map(|i| {
+            // Each participant share is given by the polynomial evaluated in the participant
+            // identifier.
             let x = Scalar::from(i as u64);
             let y = polynomial.evaluate(x);
 
@@ -34,7 +38,7 @@ fn generate_vss_shares(secret: Scalar, t: usize, n: usize) -> VssOutput {
 }
 
 // Verify the share associated with one participant.
-fn verify_share(share: &Share, commitment: &Commitment) -> bool {
+pub fn verify_share(share: &Share, commitment: &Commitment) -> bool {
     let g = G1Projective::generator();
 
     let lhs = g * share.y;

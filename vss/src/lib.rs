@@ -13,6 +13,7 @@ pub struct VssOutput {
 }
 
 /// Polynomial commitments on the group projective space.
+#[derive(Clone)]
 pub struct Commitment {
     pub points: Vec<G1Projective>,
 }

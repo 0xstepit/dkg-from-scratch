@@ -8,6 +8,7 @@ pub use sss::*;
 use bls12_381::Scalar;
 
 /// A share of a secret given by the point evaluation of a polynomial.
+#[derive(Clone)]
 pub struct Share {
     /// Public information given by the index of the share recipient.
     pub x: Scalar,
@@ -16,6 +17,7 @@ pub struct Share {
 }
 
 /// A minimla implementation of a univariate polynomial.
+#[derive(Clone)]
 pub struct Polynomial {
     /// Random coefficients.
     coeffs: Vec<Scalar>,
