@@ -14,14 +14,6 @@ The DKG is build sequentially one component on top of the other:
 cargo test -p dkg -- --show-output
 ```
 
-## Todo
-
-- [ ] : add threshold signature reconstruction.
-- [ ] : add complain handling logic.
-- [ ] : add key resharing.
-- [ ] : add key refreshing.
-- [ ] : create a real network.
-
 ## References
 
 - Pedersen, T. P. (1991). "A Threshold Cryptosystem without a Trusted Party"
